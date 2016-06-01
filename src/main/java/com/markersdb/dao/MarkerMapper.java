@@ -27,8 +27,4 @@ public interface MarkerMapper {
 
     @Delete("DELETE FROM marker WHERE id=#{id}")
     public void deleteMarkerById(@Param("id") int id);
-
-    /*@Delete("DELETE FROM marker IF EXISTS WHERE name=#{name}")
-    public void deleteMarkerByName(@Param("name") String name);*/
-
 }

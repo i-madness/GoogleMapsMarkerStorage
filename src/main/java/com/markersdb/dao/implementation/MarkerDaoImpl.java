@@ -4,6 +4,7 @@ import com.markersdb.dao.MarkerMapper;
 import com.markersdb.pojo.Marker;
 import com.markersdb.util.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * Реализация интерфейса для доступа к данным в БД.
  * Предоставляет все необходимые приложению CRUD-операции
  */
+@Service
 public class MarkerDaoImpl implements MarkerMapper {
 
     /**
