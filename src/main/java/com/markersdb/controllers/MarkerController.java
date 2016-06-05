@@ -1,12 +1,13 @@
 package com.markersdb.controllers;
 
-import com.markersdb.dao.implementation.MarkerDaoImpl;
+import com.markersdb.dao.MarkerMapper;
 import com.markersdb.pojo.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import java.util.List;
 public class MarkerController {
 
     @Autowired
-	MarkerDaoImpl markerDao;
+	private MarkerMapper markerDao;
 
     /**
      * Добавляет на главную страницу все маркеры из БД. Если маркеров в таблице нет, то будет добавлен т.н.
