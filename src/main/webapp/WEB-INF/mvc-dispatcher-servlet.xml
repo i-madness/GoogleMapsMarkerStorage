@@ -3,12 +3,16 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-     http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-     http://www.springframework.org/schema/mvc
-     http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
-     http://www.springframework.org/schema/context
-     http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+          http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+          http://www.springframework.org/schema/mvc
+          http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+          http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context-3.0.xsd
+          http://www.springframework.org/schema/tx
+          http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"
+>
 
     <context:component-scan base-package="com.markersdb"/>
 
@@ -19,5 +23,37 @@
 
     <mvc:resources mapping="/static/**" location="/WEB-INF/static/" />
     <mvc:annotation-driven/>
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="url" value="jdbc:postgresql://localhost:5432/gmaps_markers" />
+        <property name="username" value="postgres" />
+        <property name="password" value="root" />
+    </bean>
+
+    <bean id="markerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.markersdb.dao.MarkerMapper" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="net.imadness.mappers" />
+    </bean>
+
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory" />
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="typeAliasesPackage" value="com.markersdb.pojo"/>
+    </bean>
 
 </beans>

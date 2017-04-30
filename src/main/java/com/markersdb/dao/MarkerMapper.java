@@ -2,12 +2,14 @@ package com.markersdb.dao;
 
 import com.markersdb.pojo.Marker;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Интерфейс для доступа к данным в БД
  */
+@Repository
 public interface MarkerMapper {
 
     @Select("SELECT * FROM marker")

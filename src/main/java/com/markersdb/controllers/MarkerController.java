@@ -19,7 +19,7 @@ import java.util.List;
 public class MarkerController {
 
     @Autowired
-	private MarkerMapper markerDao;
+	private MarkerMapper markerMapper;
 
     /**
      * Добавляет на главную страницу все маркеры из БД. Если маркеров в таблице нет, то будет добавлен т.н.
@@ -28,11 +28,11 @@ public class MarkerController {
      */
 	@RequestMapping("/")
 	public String showIndex(ModelMap model) {
-        List<Marker> allMarkers = markerDao.getAllMarkers();
+        List<Marker> allMarkers = markerMapper.getAllMarkers();
         if (allMarkers.size()==0) {
             Marker sampleMarker = new Marker(0, "Это образец маркера", 0d, 0d);
             allMarkers.add(sampleMarker);
-            markerDao.insertMarker(sampleMarker);
+            markerMapper.insertMarker(sampleMarker);
         }
 		model.addAttribute("allMarkers",allMarkers);
 		return "index";
@@ -47,7 +47,7 @@ public class MarkerController {
  	@RequestMapping("/get/{id}")
 	@ResponseBody
 	public Marker getMarkerById(@PathVariable int id) {
-		Marker m = markerDao.getMarkerById(id);
+		Marker m = markerMapper.getMarkerById(id);
 		return m;
 	}
 
@@ -63,7 +63,7 @@ public class MarkerController {
 		try {
 			name = new String(name.getBytes("ISO8859-1"), "UTF-8");
 		} catch (UnsupportedEncodingException e) { return null; }
-		Marker m = markerDao.getMarkerByName(name);
+		Marker m = markerMapper.getMarkerByName(name);
 		return m;
 	}
 
@@ -73,7 +73,7 @@ public class MarkerController {
      */
 	@RequestMapping("/delete/{id}")
 	public String deleteMarker(@PathVariable int id) {
-		markerDao.deleteMarkerById(id);
+		markerMapper.deleteMarkerById(id);
 		return "redirect:/";
 	}
 
@@ -83,7 +83,7 @@ public class MarkerController {
      */
 	@RequestMapping(value = "/add", method = RequestMethod.POST, headers = "Accept=application/json")
 	public String addMarker(@RequestBody Marker marker) {
-		markerDao.insertMarker(marker);
+		markerMapper.insertMarker(marker);
 		return "redirect:/";
 	}
 
@@ -93,7 +93,7 @@ public class MarkerController {
      */
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public String updateMarker(@RequestBody Marker marker){
-        markerDao.updateMarker(marker);
+        markerMapper.updateMarker(marker);
         return "redirect:/";
     }
 
