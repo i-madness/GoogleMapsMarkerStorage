@@ -14,7 +14,7 @@
           http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"
 >
 
-    <context:component-scan base-package="com.markersdb"/>
+    <context:component-scan base-package="io.github.imadness.markersdb"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
@@ -32,7 +32,7 @@
     </bean>
 
     <bean id="markerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.markersdb.dao.MarkerMapper" />
+        <property name="mapperInterface" value="io.github.imadness.markersdb.dao.MarkerMapper" />
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
     </bean>
 

@@ -1,6 +1,6 @@
-package com.markersdb.dao;
+package io.github.imadness.markersdb.dao;
 
-import com.markersdb.pojo.Marker;
+import io.github.imadness.markersdb.pojo.Marker;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 

@@ -10,7 +10,7 @@
 	<script src="/static/js/bootstrap.js"></script>
     <!-- Основная часть клиентского приложения: -->
     <script src="/static/js/service.js"></script>
-	<link href="/static/css/bootstrap.css" rel="stylesheet">
+	<link href="/static/css/main.css" rel="stylesheet">
 	<title>Google Maps Markers</title>
 </head>
 <body>

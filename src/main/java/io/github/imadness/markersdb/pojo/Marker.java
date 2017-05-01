@@ -1,4 +1,4 @@
-package com.markersdb.pojo;
+package io.github.imadness.markersdb.pojo;
 
 /**
  * Модель маркера Google Maps, которая будет использована для сущности маркера в БД

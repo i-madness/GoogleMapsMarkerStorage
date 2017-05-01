@@ -1,7 +1,7 @@
-package com.markersdb.controllers;
+package io.github.imadness.markersdb.controllers;
 
-import com.markersdb.dao.MarkerMapper;
-import com.markersdb.pojo.Marker;
+import io.github.imadness.markersdb.dao.MarkerMapper;
+import io.github.imadness.markersdb.pojo.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -41,8 +41,8 @@ public class MarkerController {
 	/**
 	 * Ответ сервера в виде JSON-объекта, возвращает объект маркера по его ID
 	 * @param id ID маркера в БД
-	 * @return полученный объект com.markersdb.pojo.Marker
-	 * @see com.markersdb.pojo.Marker
+	 * @return полученный объект Marker
+	 * @see Marker
 	 */
  	@RequestMapping("/get/{id}")
 	@ResponseBody
@@ -54,8 +54,8 @@ public class MarkerController {
     /**
      * Ответ сервера в виде JSON-объекта, возвращает объект маркера по его имени.
      * @param name наименование маркера
-     * @return полученный объект com.markersdb.pojo.Marker
-     * @see com.markersdb.pojo.Marker
+     * @return полученный объект Marker
+     * @see Marker
      */
 	@RequestMapping("/getByName/{name}")
 	@ResponseBody
