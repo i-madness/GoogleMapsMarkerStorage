@@ -11,6 +11,7 @@
     <!-- Основная часть клиентского приложения: -->
     <script src="/static/js/service.js"></script>
 	<link href="/static/css/main.css" rel="stylesheet">
+	<link href="/static/css/bootstrap.min.css" rel="stylesheet">
 	<title>Google Maps Markers</title>
 </head>
 <body>
